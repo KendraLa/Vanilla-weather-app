@@ -1,3 +1,30 @@
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  //calculate the date
+  return `${day} ${hours}:${minutes}`;
+}
+
 function displayTemperature(response) {
   console.log(response.data);
 
@@ -15,6 +42,9 @@ function displayTemperature(response) {
 
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = Math.round(response.data.wind.speed);
+
+  let dateElement = document.querySelector("#date");
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
 }
 
 let apiKey = "04bc9729bca28c954ae69403fa79befa";
@@ -39,3 +69,12 @@ axios.get(apiUrl).then(displayTemperature);
 //step 11: delete de 89% and create a span after Humidity and an an id to the span
 // step 12: create the new element for humidity
 //step 13: do the same for Wind
+// DISPLAY THE CURRENT DATE
+//step 14: add an id and delete Wednesday 09:00
+//step 15 : create the element and select it
+//step 16: create the function in order to display the date as Wednesday 09:00
+//step 17: create the variable date, hours, minutes, day
+//step 18: create an ary for all days of the week start on Sunday
+//step 19: change --> let day = date.getDay(); to --> let day = days[date.getDay()];
+//step 20: pu the if condition for minutes and hours in order to display well the current hour
+//step 21:
