@@ -26,8 +26,6 @@ function formatDate(timestamp) {
 }
 
 function displayTemperature(response) {
-  console.log(response.data);
-
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
 
@@ -76,5 +74,5 @@ axios.get(apiUrl).then(displayTemperature);
 //step 17: create the variable date, hours, minutes, day
 //step 18: create an ary for all days of the week start on Sunday
 //step 19: change --> let day = date.getDay(); to --> let day = days[date.getDay()];
-//step 20: pu the if condition for minutes and hours in order to display well the current hour
-//step 21:
+//step 20: put the if condition for minutes and hours in order to display well the current hour
+//step 21: remove the console.log
