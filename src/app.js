@@ -46,7 +46,8 @@ function displayTemperature(response) {
 }
 
 let apiKey = "04bc9729bca28c954ae69403fa79befa";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=New York&appid=${apiKey}&units=metric`;
+let city = "New York";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
 axios.get(apiUrl).then(displayTemperature);
 
@@ -76,3 +77,4 @@ axios.get(apiUrl).then(displayTemperature);
 //step 19: change --> let day = date.getDay(); to --> let day = days[date.getDay()];
 //step 20: put the if condition for minutes and hours in order to display well the current hour
 //step 21: remove the console.log
+//step 22: create the variable city and put it on the apiUrl
