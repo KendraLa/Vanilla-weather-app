@@ -53,11 +53,22 @@ function displayTemperature(response) {
   iconELement.setAttribute("alt", response.data.weather[0].description);
 }
 
-let apiKey = "04bc9729bca28c954ae69403fa79befa";
-let city = "New York";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+function search(city) {
+  let apiKey = "04bc9729bca28c954ae69403fa79befa";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
 
-axios.get(apiUrl).then(displayTemperature);
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
+
+search("New York");
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
 
 //step 1: create the variables apiKey and apiUrl
 //step 2: call axios
@@ -90,3 +101,14 @@ axios.get(apiUrl).then(displayTemperature);
 //step 23: add an id to img on html + create icon element, select it and setAttribute
 //step 24: remove the link of src img on html
 //step 25: To change the alternative text. Create a setAttribute using hte same technique.
+//Create my search engine
+//step 26: add form element on html + add an id + create the inputs of the form
+//step 27: creat a div.row in order to align them with 2 columns + add a class to my button in order to have it better.
+//step 28: in order to add some margin at the bottom, add a class to my form on html file
+//LET'S LINK THE FORM
+//step 29: create the from variable and select it + add an eventListener
+//step 30: create the function and add an id to my input
+//step 31: create cityInput Element and selecti it + try with console.log if it works well
+//step 32: Change the name of the existing function to hanldeSubmit + create a new function with the name search and put the variables apiKey, city and apiUrl + axios inside this one. I can delete the variable city because I already have it on my function.
+//step 33: call the function search
+//step 34: in order to display the city imput as H1 on my form, I call the search function inside the handleSubmit function --> search(cityInputElement.value);
