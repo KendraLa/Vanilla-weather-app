@@ -135,33 +135,3 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("New York");
-
-//LET'S LINK THE FORM
-//step 29: create the from variable and select it + add an eventListener
-//step 30: create the function and add an id to my input
-//step 31: create cityInput Element and selecti it + try with console.log if it works well
-//step 32: Change the name of the existing function to hanldeSubmit + create a new function with the name search and put the variables apiKey, city and apiUrl + axios inside this one. I can delete the variable city because I already have it on my function.
-//step 33: call the function search
-//step 34: in order to display the city imput as H1 on my form, I call the search function inside the handleSubmit function --> search(cityInputElement.value);
-//CONVERT UNITS
-//Step 35: add an id to fahrenheit and celsius
-//step 36: create the variable and select it
-//step 37: create the function
-//step 38: create the variable fahrenheitTemperature with matematic formula inside this function
-//step 39: create the temperature element and select it
-//step 40: create a global variable, let celsiusTemperature = null;
-//step 41: create the variable celsiusTemperature = response.data.main.temp; inside the function displayTemperature(response) {}
-//step 42: create a link for °C, add an id and do the same as hfahrenheit
-//step 43: create a class inside my celsuis-link
-//step 44: add celsiusLink.classList.remove("active"); to function displayFahrenheitTemperature(event) {}
-//step 45: dot the same for °F but alreves
-//DISPLAY THE FORECAST
-//step 46: create a new apiUrl inside the function search(city) + add axios
-//step 47: create the function displayForecast
-//step 48: id an id to my row weather-forecast, create an elemetn and select it
-//step 49: create the variable let forecast = response.data.list[0];
-//step 50: do the interpolation with --> <div class="col-2">
-//step 51: create the funcction formatHours(timestamp){}
-//step 52: do the interpolation inside function displayForecast(response) {
-//step 53: remove some staff that we have twice from the first function create --> function formatDate(timestamp) {
-//step 54: add a for loop
