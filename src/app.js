@@ -43,6 +43,14 @@ function displayTemperature(response) {
 
   let dateElement = document.querySelector("#date");
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
+
+  let iconELement = document.querySelector("#icon");
+  iconELement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+
+  iconELement.setAttribute("alt", response.data.weather[0].description);
 }
 
 let apiKey = "04bc9729bca28c954ae69403fa79befa";
@@ -78,3 +86,7 @@ axios.get(apiUrl).then(displayTemperature);
 //step 20: put the if condition for minutes and hours in order to display well the current hour
 //step 21: remove the console.log
 //step 22: create the variable city and put it on the apiUrl
+//DISPLAY the correct icon weather
+//step 23: add an id to img on html + create icon element, select it and setAttribute
+//step 24: remove the link of src img on html
+//step 25: To change the alternative text. Create a setAttribute using hte same technique.
