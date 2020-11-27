@@ -1,16 +1,6 @@
 function formatDate(timestamp) {
   let date = new Date(timestamp);
 
-  let hours = date.getHours();
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
-
-  let minutes = date.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-
   let days = [
     "Sunday",
     "Monday",
@@ -22,7 +12,23 @@ function formatDate(timestamp) {
   ];
   let day = days[date.getDay()];
   //calculate the date
-  return `${day} ${hours}:${minutes}`;
+  return `${day} ${formatHours(timestamp)}`;
+}
+
+function formatHours(timestamp) {
+  let date = new Date(timestamp);
+
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${hours}:${minutes}`;
 }
 
 function displayTemperature(response) {
@@ -55,10 +61,39 @@ function displayTemperature(response) {
   celsiusTemperature = response.data.main.temp;
 }
 
+function displayForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = null;
+  let forecast = null;
+
+  for (let index = 0; index < 6; index++) {
+    forecast = response.data.list[index];
+
+    forecastElement.innerHTML += `
+  <div class="col-2">
+              <h3>${formatHours(forecast.dt * 1000)}</h3>
+              <img
+                src="http://openweathermap.org/img/wn/${
+                  forecast.weather[0].icon
+                }@2x.png"
+                
+              />
+              <div class="weather-forecast-temperature">
+                <strong>${Math.round(
+                  forecast.main.temp_max
+                )}°</strong> ${Math.round(forecast.main.temp_min)}°
+              </div>
+            </div>`;
+  }
+}
+
 function search(city) {
   let apiKey = "04bc9729bca28c954ae69403fa79befa";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayTemperature);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function handleSubmit(event) {
@@ -120,3 +155,13 @@ search("New York");
 //step 43: create a class inside my celsuis-link
 //step 44: add celsiusLink.classList.remove("active"); to function displayFahrenheitTemperature(event) {}
 //step 45: dot the same for °F but alreves
+//DISPLAY THE FORECAST
+//step 46: create a new apiUrl inside the function search(city) + add axios
+//step 47: create the function displayForecast
+//step 48: id an id to my row weather-forecast, create an elemetn and select it
+//step 49: create the variable let forecast = response.data.list[0];
+//step 50: do the interpolation with --> <div class="col-2">
+//step 51: create the funcction formatHours(timestamp){}
+//step 52: do the interpolation inside function displayForecast(response) {
+//step 53: remove some staff that we have twice from the first function create --> function formatDate(timestamp) {
+//step 54: add a for loop
