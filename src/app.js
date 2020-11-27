@@ -51,6 +51,8 @@ function displayTemperature(response) {
   );
 
   iconELement.setAttribute("alt", response.data.weather[0].description);
+
+  celsiusTemperature = response.data.main.temp;
 }
 
 function search(city) {
@@ -65,10 +67,39 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
-search("New York");
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
+
+let celsiusTemperature = null;
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+search("New York");
 
 //LET'S LINK THE FORM
 //step 29: create the from variable and select it + add an eventListener
@@ -77,3 +108,15 @@ form.addEventListener("submit", handleSubmit);
 //step 32: Change the name of the existing function to hanldeSubmit + create a new function with the name search and put the variables apiKey, city and apiUrl + axios inside this one. I can delete the variable city because I already have it on my function.
 //step 33: call the function search
 //step 34: in order to display the city imput as H1 on my form, I call the search function inside the handleSubmit function --> search(cityInputElement.value);
+//CONVERT UNITS
+//Step 35: add an id to fahrenheit and celsius
+//step 36: create the variable and select it
+//step 37: create the function
+//step 38: create the variable fahrenheitTemperature with matematic formula inside this function
+//step 39: create the temperature element and select it
+//step 40: create a global variable, let celsiusTemperature = null;
+//step 41: create the variable celsiusTemperature = response.data.main.temp; inside the function displayTemperature(response) {}
+//step 42: create a link for °C, add an id and do the same as hfahrenheit
+//step 43: create a class inside my celsuis-link
+//step 44: add celsiusLink.classList.remove("active"); to function displayFahrenheitTemperature(event) {}
+//step 45: dot the same for °F but alreves
